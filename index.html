@@ -23,7 +23,7 @@
           </div>
           <button class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Upload</button>
         </form>
-
+        <br>
         <div id="percent"></div>
         <div id="status"></div>      
       </div>
@@ -45,7 +45,7 @@
           },
           uploadProgress: function(event, position, total, percentComplete) {
             var percentVal = percentComplete + '%';
-            percent.html(percentVal);
+            percent.html('<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="' + percentVal + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + percentVal + ';"> ' + percentVal + '</div></div>');
           },
           complete: function(xhr) {
             if(xhr.responseText == 'success'){
