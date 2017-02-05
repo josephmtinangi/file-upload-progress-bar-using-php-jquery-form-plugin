@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>File Upload</title>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="//oss.maxcdn.com/jquery.form/3.50/jquery.form.min.js"></script>
+
+</head>
+<body>
+  <form method="post" action="upload.php" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button>Upload</button>
+  </form>
+
+  <div id="percent"></div>
+  <div id="status"></div>
+
+  <script>
+    $(function() {
+      $(document).ready(function() {
+        var percent = $('#percent');
+        var status = $('#status');
+
+        $('form').ajaxForm({
+          beforeSend: function() {
+            status.empty();
+            var percentVal = '0%';
+            percent.html(percentVal);
+          },
+          uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            percent.html(percentVal);
+          },
+          complete: function(xhr) {
+            status.html(xhr.responseText);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
